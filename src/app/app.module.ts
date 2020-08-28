@@ -9,6 +9,9 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { MyCaloriesPageComponent } from './my-calories-page/my-calories-page.component';
 import { ProductsPageComponent } from './products-page/products-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { RegisterPageComponent } from './register-page/register-page.component';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
