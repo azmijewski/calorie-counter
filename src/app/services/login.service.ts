@@ -13,7 +13,6 @@ export class LoginService {
   isLogged(): boolean {
     return sessionStorage.getItem('token') != null;
   }
-
   login(username: string, password: string): void {
     const token = btoa(username.concat(':').concat(password));
     sessionStorage.setItem('token', token);
