@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">
-    <img src="assets/cals.jpg" width="50 " height="30" alt="">
+  <a class="navbar-brand margin-left" routerLink="">
+    <img src="assets/cals.jpg" width="75 " height="40" alt="">
     Licznik kalorii
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,20 +10,24 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Lista produktów <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/products">Lista produktów <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Moje kalorie</a>
+        <a class="nav-link" routerLink="/calories">Moje kalorie</a>
       </li>
     </ul>
     <ul class="navbar-nav my-2 my-lg-0">
       <li class="nav-item">
-        <a class="nav-link" href="#">Moje konto</a>
+        <a class="nav-link" href="#" [hidden]="!loginService.isLogged()">Moje konto</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Wyloguj</a>
+        <a class="nav-link" href="#" [hidden]="!loginService.isLogged()">Wyloguj</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login" [hidden]="loginService.isLogged()">Zaloguj</a>
       </li>
     </ul>
   </div>
 </nav>
-<app-products-page></app-products-page>
+<router-outlet></router-outlet>
+

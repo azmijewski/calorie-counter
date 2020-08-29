@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+import {LoginService} from '../services/login.service';
 
 @Component({
   selector: 'app-main-page',
@@ -7,12 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public router: Router, public loginService: LoginService) { }
 
   ngOnInit(): void {
   }
 
-  logout() {
+  logout(): void {
 
   }
 }

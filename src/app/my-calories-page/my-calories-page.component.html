@@ -1,1 +1,24 @@
-<p>my-calories-page works!</p>
+<div class="container">
+  <div class="row justify-content-start margined">
+    <mat-form-field appearance="fill">
+      <mat-label>Wybierz datę</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="date" (dateChange)="click()">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+      <button class="btn btn-dark margined">Dodaj produkt</button>
+  </div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Nazwa</th>
+      <th scope="col">Producent</th>
+      <th scope="col">Ilość(g)</th>
+      <th scope="col">Kalorie(kcal)</th>
+      <th scope="col">Białko(g)</th>
+      <th scope="col">Tłuszcze(g)</th>
+      <th scope="col">Węglowodany(g)</th>
+    </tr>
+    </thead>
+  </table>
+</div>
