@@ -18,6 +18,8 @@ import {RouterModule} from '@angular/router';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatNativeDateModule} from '@angular/material/core';
 import {HttpClientModule} from '@angular/common/http';
+import {MyDataPageComponent} from './my-data-page/my-data-page.component';
+import {ArticlesPageComponent} from './articles-page/articles-page.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import {HttpClientModule} from '@angular/common/http';
     LoginPageComponent,
     MyCaloriesPageComponent,
     ProductsPageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    MyDataPageComponent,
+    ArticlesPageComponent
   ],
   imports: [
     AppRoutingModule,

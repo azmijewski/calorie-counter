@@ -21,5 +21,6 @@ export class LoginService {
   }
   logout(): void {
     sessionStorage.removeItem('token');
+    this.router.navigate(['']);
   }
 }

@@ -6,6 +6,8 @@ import {RegisterPageComponent} from './register-page/register-page.component';
 import {ProductsPageComponent} from './products-page/products-page.component';
 import {NgModule} from '@angular/core';
 import {AuthGuardService} from './services/auth-guard.service';
+import {ArticlesPageComponent} from './articles-page/articles-page.component';
+import {MyDataPageComponent} from './my-data-page/my-data-page.component';
 
 const routes: Routes = [{
     path: '',
@@ -27,6 +29,15 @@ const routes: Routes = [{
   {
     path: 'products',
     component: ProductsPageComponent
+  },
+  {
+    path: 'articles',
+    component: ArticlesPageComponent
+  },
+  {
+    path: 'my-account',
+    component: MyDataPageComponent,
+    canActivate: [AuthGuardService]
   }
 ];
 @NgModule({
