@@ -10,7 +10,7 @@
       <button class="btn btn-dark"> Wyszukaj</button>
     </div>
     <div class="col-md-2 mt-2">
-      <button class="btn btn-dark">Dodaj</button>
+      <button class="btn btn-dark" *ngIf="loginService.isLogged()" (click)="addProduct()">Dodaj</button>
     </div>
   </div>
 <table class="table margined">

@@ -20,6 +20,10 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {HttpClientModule} from '@angular/common/http';
 import {MyDataPageComponent} from './my-data-page/my-data-page.component';
 import {ArticlesPageComponent} from './articles-page/articles-page.component';
+import {AddProductDialogComponent} from './dialogs/add-product-dialog/add-product-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {AddCalorieProductDialogComponent} from './dialogs/add-calorie-product-dialog/add-calorie-product-dialog.component';
+import {EditAccountDialogComponent} from './dialogs/edit-account-dialog/edit-account-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,10 @@ import {ArticlesPageComponent} from './articles-page/articles-page.component';
     ProductsPageComponent,
     RegisterPageComponent,
     MyDataPageComponent,
-    ArticlesPageComponent
+    ArticlesPageComponent,
+    AddProductDialogComponent,
+    AddCalorieProductDialogComponent,
+    EditAccountDialogComponent
   ],
   imports: [
     AppRoutingModule,
@@ -45,7 +52,13 @@ import {ArticlesPageComponent} from './articles-page/articles-page.component';
     MatPaginatorModule,
     NoopAnimationsModule,
     MatNativeDateModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+  ],
+  entryComponents: [
+    AddProductDialogComponent,
+    AddCalorieProductDialogComponent,
+    EditAccountDialogComponent
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]

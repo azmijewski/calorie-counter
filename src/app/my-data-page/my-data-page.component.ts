@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {EditAccountDialogComponent} from '../dialogs/edit-account-dialog/edit-account-dialog.component';
 
 @Component({
   selector: 'app-my-data-page',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyDataPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
+  }
+
+  editAccount(): void {
+    const dialogRef = this.dialog.open(EditAccountDialogComponent, {
+      width: '700px'
+    });
+    dialogRef.afterClosed().subscribe(acoount => {
+      if (acoount) {
+        console.log('Editing ccount');
+      }
+    });
   }
 
 }
