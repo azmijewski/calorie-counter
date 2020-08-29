@@ -14,7 +14,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {AppRoutingModule} from './app.routing.module';
-import {RouterModule} from '@angular/router';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatNativeDateModule} from '@angular/material/core';
 import {HttpClientModule} from '@angular/common/http';
@@ -24,6 +23,8 @@ import {AddProductDialogComponent} from './dialogs/add-product-dialog/add-produc
 import {MatDialogModule} from '@angular/material/dialog';
 import {AddCalorieProductDialogComponent} from './dialogs/add-calorie-product-dialog/add-calorie-product-dialog.component';
 import {EditAccountDialogComponent} from './dialogs/edit-account-dialog/edit-account-dialog.component';
+import {DeleteAccountDialogComponent} from './dialogs/delete-account-dialog/delete-account-dialog.component';
+import {ChangePasswordDialogComponent} from './dialogs/change-password-dialog/change-password-dialog.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,9 @@ import {EditAccountDialogComponent} from './dialogs/edit-account-dialog/edit-acc
     ArticlesPageComponent,
     AddProductDialogComponent,
     AddCalorieProductDialogComponent,
-    EditAccountDialogComponent
+    EditAccountDialogComponent,
+    DeleteAccountDialogComponent,
+    ChangePasswordDialogComponent
   ],
   imports: [
     AppRoutingModule,
@@ -58,7 +61,9 @@ import {EditAccountDialogComponent} from './dialogs/edit-account-dialog/edit-acc
   entryComponents: [
     AddProductDialogComponent,
     AddCalorieProductDialogComponent,
-    EditAccountDialogComponent
+    EditAccountDialogComponent,
+    DeleteAccountDialogComponent,
+    ChangePasswordDialogComponent
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]

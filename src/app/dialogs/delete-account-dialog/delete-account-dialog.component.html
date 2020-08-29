@@ -1,1 +1,36 @@
-<p>delete-account-dialog works!</p>
+<div class="modal-body p-5">
+  <div class="container-fluid center-block">
+    <h2 mat-dialog-title style="color: red">Usuń konto</h2>
+    <span class="material-icons" style="position: absolute; top: 5px; right: 5px; cursor: pointer"
+          (click)="dialogRef.close()">close</span>
+    <mat-dialog-content>
+      <div class="container">
+        <form [formGroup]="form" (ngSubmit)="deleteAccount()">
+          <div class="row">
+            <div class="col-md-5"><p class="label">Wpisz hasło:
+              <span *ngIf="form.get('password').invalid" style="color: red; font-weight: bold">*</span>
+            </p></div>
+            <div class="col-md-7"><input id="enter_password" formControlName="password"></div>
+          </div>
+          <div class="row" style="margin-bottom: 10px">
+            <div class="col-md-12" *ngIf="!form.valid">
+              <span class="text-error" style="color: red">
+                <span class="material-icons" style="position: relative; top: 5px">error</span>
+                <span
+                  style="position: relative; left: 5px; bottom: 2px">Wszystkie pola muszą mieć poprawne wartości</span>
+              </span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+              <button id="account_delete" type="button" class="btn btn-danger" (click)="deleteAccount()"
+                      style="margin-bottom: 5px">Usuń
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </mat-dialog-content>
+  </div>
+</div>

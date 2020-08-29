@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-delete-account-dialog',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteAccountDialogComponent implements OnInit {
 
-  constructor() { }
+  form: FormGroup;
+
+  constructor(private formBuilder: FormBuilder,
+              public dialogRef: MatDialogRef<DeleteAccountDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) data) { }
 
   ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      password: ['', Validators.required]
+    });
+  }
+
+  deleteAccount(): void {
+    if (this.form.valid) {
+      this.dialogRef.close();
+    }
   }
 
 }
