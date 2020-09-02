@@ -1,6 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpResponseBase} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {Login} from '../model/login';
+import {Observable} from 'rxjs';
+import {environment} from '../../environments/environment';
+import {User} from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +17,21 @@ export class LoginService {
   isLogged(): boolean {
     return sessionStorage.getItem('token') != null;
   }
-  login(username: string, password: string): void {
-    const token = btoa(username.concat(':').concat(password));
-    sessionStorage.setItem('token', token);
-    this.router.navigate(['calories']);
+  login(username: string, pass: string): Observable<HttpResponseBase> {
+    const login: Login = {
+      login: username,
+      password: pass
+    };
+    return this.http.post(environment.appUrl + 'login', login, {observe: 'response'});
   }
   logout(): void {
     sessionStorage.removeItem('token');
     this.router.navigate(['']);
+  }
+  register(user: User): Observable<HttpResponseBase> {
+    return this.http.post(environment.appUrl + 'registration', user, {observe: 'response'});
+  }
+  confirmAccount(token: string): Observable<HttpResponseBase> {
+    return this.http.put(environment.appUrl + 'registration/' + token, null, {observe: 'response'});
   }
 }

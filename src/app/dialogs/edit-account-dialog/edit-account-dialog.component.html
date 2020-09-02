@@ -14,6 +14,9 @@
             <div class="col-md-5"><p class="label">Nazwisko: <span *ngIf="form.get('lastname').invalid"
                                                                 style="color: red; font-weight: bold">*</span></p></div>
             <div class="col-md-7"><input id="edit_lastname" formControlName="lastname"></div>
+            <div class="col-md-5"><p class="label">Email: <span *ngIf="form.get('email').invalid"
+                                                                   style="color: red; font-weight: bold">*</span></p></div>
+            <div class="col-md-7"><input id="edit_email" formControlName="email"></div>
             <div class="col-md-5"><p class="label">Kalorie: <span *ngIf="form.get('calories').invalid"
                                                                   style="color: red; font-weight: bold">*</span></p>
             </div>
@@ -22,7 +25,12 @@
                                                                  style="color: red; font-weight: bold">*</span></p>
             </div>
             <div class="col-md-7"><input id="edit_weight" formControlName="weight"></div>
+            <div class="col-md-5"><p class="label">Wzrost: <span *ngIf="form.get('height').invalid"
+                                                               style="color: red; font-weight: bold">*</span></p>
+            </div>
+            <div class="col-md-7"><input id="edit_height" formControlName="height"></div>
           </div>
+
           <div class="row" style="margin-bottom: 10px">
             <div class="col-md-12" *ngIf="!form.valid">
               <span class="text-error" style="color: red">

@@ -25,34 +25,23 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <td>Makaron</td>
-    <td>Lubella</td>
-    <td>200</td>
-    <td>10</td>
-    <td>2</td>
-    <td>40</td>
-  </tr>
-  <tr>
-    <td>Białko WPC 80</td>
-    <td>KFD</td>
-    <td>200</td>
-    <td>50</td>
-    <td>2</td>
-    <td>5</td>
-  </tr>
-  <tr>
-    <td>Czekolada</td>
-    <td>Milka</td>
-    <td>500</td>
-    <td>2</td>
-    <td>20</td>
-    <td>60</td>
-  </tr>
+  <ng-container *ngFor=" let product of products">
+    <tr>
+      <td>{{product.name}}</td>
+      <td>{{product.brand}}</td>
+      <td>{{product.calories}}</td>
+      <td>{{product.whey}}</td>
+      <td>{{product.fat}}</td>
+      <td>{{product.carbohydrates}}</td>
+    </tr>
+  </ng-container>
   </tbody>
 </table>
-  <mat-paginator [length]="100"
-                 [pageSize]="10"
+  <mat-paginator
+                [length]="total"
+                  [pageSize]="size"
+                 [pageIndex]="page"
+                 (page)="loadData(paginator.pageIndex, paginator.pageSize)"
                  [pageSizeOptions]="[5, 10, 25, 100]">
   </mat-paginator>
 </div>
