@@ -1,4 +1,5 @@
 export interface UserProduct {
+  productId: number;
   name: string;
   brand: string;
   weight: number;

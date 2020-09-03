@@ -7,6 +7,9 @@ import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {AddCalorieProductDialogComponent} from '../dialogs/add-calorie-product-dialog/add-calorie-product-dialog.component';
 import {NewUserProduct} from '../model/new-user-product';
 import {formatDate} from '@angular/common';
+import {DeleteUserProduct} from '../model/delete-user-product';
+import {ModifyUserProductComponent} from '../dialogs/modify-user-product/modify-user-product.component';
+import {ModifyUserProduct} from '../model/modify-user-product';
 
 @Component({
   selector: 'app-my-calories-page',
@@ -64,4 +67,31 @@ export class MyCaloriesPageComponent implements OnInit {
     });
   }
 
+  delete(product: UserProduct): void {
+    const deleteUserProduct: DeleteUserProduct = {
+      productId: product.productId,
+      date: formatDate(this.date, 'yyyy-MM-dd', this.locale)
+    };
+    this.userProductService.deleteUserProduct(deleteUserProduct).subscribe(response => {
+      this.loadUsersProducts(this.date);
+    });
+  }
+  edit(product: UserProduct): void {
+    const dialog = this.dialog.open(ModifyUserProductComponent, {
+      width: '700px',
+      data: product.weight
+    });
+    dialog.afterClosed().subscribe(data => {
+      if (data) {
+        const modifyUserProduct: ModifyUserProduct = {
+          productId: product.productId,
+        date: formatDate(this.date, 'yyyy-MM-dd', this.locale),
+        newWeight: data
+        };
+        this.userProductService.modifyUserProduct(modifyUserProduct).subscribe(response => {
+          this.loadUsersProducts(this.date);
+        });
+      }
+    });
+  }
 }

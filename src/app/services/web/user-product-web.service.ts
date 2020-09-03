@@ -5,6 +5,8 @@ import {UserProductList} from '../../model/user-product-list';
 import {environment} from '../../../environments/environment';
 import {NewUserProduct} from '../../model/new-user-product';
 import {DatePipe, formatDate} from '@angular/common';
+import {ModifyUserProduct} from '../../model/modify-user-product';
+import {DeleteUserProduct} from '../../model/delete-user-product';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +24,13 @@ export class UserProductWebService {
   }
   addProduct(userProduct: NewUserProduct): Observable<HttpResponseBase> {
 
-    return this.http.post(environment.appUrl + 'calories', userProduct,{observe: 'response'});
+    return this.http.post(environment.appUrl + 'calories', userProduct, {observe: 'response'});
+  }
+  modifyUserProduct(userProduct: ModifyUserProduct): Observable<HttpResponseBase> {
+    return this.http.put(environment.appUrl + 'calories', userProduct, {observe: 'response'});
+  }
+  deleteUserProduct(userProduct: DeleteUserProduct): Observable<HttpResponseBase> {
+    return this.http.post(environment.appUrl + 'calories/remove', userProduct, {observe: 'response'});
   }
 
 }

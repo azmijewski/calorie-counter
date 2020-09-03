@@ -29,6 +29,7 @@ import {AuthInterceptor} from './services/auth-interceptor';
 import localePl from '@angular/common/locales/pl';
 import {registerLocaleData} from '@angular/common';
 import {AccountConfirmationPageComponent} from './account-confirmation-page/account-confirmation-page.component';
+import { ModifyUserProductComponent } from './dialogs/modify-user-product/modify-user-product.component';
 registerLocaleData(localePl);
 
 @NgModule({
@@ -47,7 +48,8 @@ registerLocaleData(localePl);
     EditAccountDialogComponent,
     DeleteAccountDialogComponent,
     ChangePasswordDialogComponent,
-    AccountConfirmationPageComponent
+    AccountConfirmationPageComponent,
+    ModifyUserProductComponent
   ],
   imports: [
     AppRoutingModule,
