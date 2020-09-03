@@ -9,6 +9,7 @@ import {AuthGuardService} from './services/auth-guard.service';
 import {ArticlesPageComponent} from './articles-page/articles-page.component';
 import {MyDataPageComponent} from './my-data-page/my-data-page.component';
 import {AccountConfirmationPageComponent} from './account-confirmation-page/account-confirmation-page.component';
+import {ArticleListPageComponent} from './article-list-page/article-list-page.component';
 
 const routes: Routes = [{
     path: '',
@@ -33,6 +34,10 @@ const routes: Routes = [{
   },
   {
     path: 'articles',
+    component: ArticleListPageComponent
+  },
+  {
+    path: 'articles/:id',
     component: ArticlesPageComponent
   },
   {

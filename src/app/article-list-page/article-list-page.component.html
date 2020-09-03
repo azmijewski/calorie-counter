@@ -1,0 +1,18 @@
+<div class="container margined-up">
+  <div class="row justify-content-center">
+    <div class="list-group">
+      <ng-container *ngFor="let article of articles">
+        <a [routerLink]="article.articleId" class="list-group-item list-group-item-action">
+          {{article.title}}
+        </a>
+      </ng-container>
+    </div>
+  </div>
+  <mat-paginator
+    [length]="total"
+    [pageSize]="size"
+    [pageIndex]="page"
+    (page)="loadData(paginator.pageIndex, paginator.pageSize)"
+    [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+</div>

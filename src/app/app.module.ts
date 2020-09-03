@@ -30,6 +30,7 @@ import localePl from '@angular/common/locales/pl';
 import {registerLocaleData} from '@angular/common';
 import {AccountConfirmationPageComponent} from './account-confirmation-page/account-confirmation-page.component';
 import { ModifyUserProductComponent } from './dialogs/modify-user-product/modify-user-product.component';
+import { ArticleListPageComponent } from './article-list-page/article-list-page.component';
 registerLocaleData(localePl);
 
 @NgModule({
@@ -49,7 +50,8 @@ registerLocaleData(localePl);
     DeleteAccountDialogComponent,
     ChangePasswordDialogComponent,
     AccountConfirmationPageComponent,
-    ModifyUserProductComponent
+    ModifyUserProductComponent,
+    ArticleListPageComponent
   ],
   imports: [
     AppRoutingModule,
