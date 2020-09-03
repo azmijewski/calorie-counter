@@ -7,6 +7,6 @@ export interface User {
   weight: number;
   height: number;
   calorie: number;
-  birthDate: Date;
+  birthDate: string;
   password: string;
 }

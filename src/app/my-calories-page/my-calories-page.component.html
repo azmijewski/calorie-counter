@@ -6,19 +6,34 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-      <button class="btn btn-dark margined">Dodaj produkt</button>
+    <button class="btn btn-dark margined" (click)="addProduct()">Dodaj produkt</button>
   </div>
-  <table class="table">
-    <thead>
-    <tr>
-      <th scope="col">Nazwa</th>
-      <th scope="col">Producent</th>
-      <th scope="col">Ilość(g)</th>
-      <th scope="col">Kalorie(kcal)</th>
-      <th scope="col">Białko(g)</th>
-      <th scope="col">Tłuszcze(g)</th>
-      <th scope="col">Węglowodany(g)</th>
-    </tr>
-    </thead>
-  </table>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Nazwa</th>
+        <th scope="col">Producent</th>
+        <th scope="col">Ilość(g)</th>
+        <th scope="col">Kalorie(kcal)</th>
+        <th scope="col">Białko(g)</th>
+        <th scope="col">Tłuszcze(g)</th>
+        <th scope="col">Węglowodany(g)</th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor=" let product of userProducts">
+        <tr>
+          <td>{{product.name}}</td>
+          <td>{{product.brand}}</td>
+          <td>{{product.weight}}</td>
+          <td>{{product.calories}}</td>
+          <td>{{product.whey}}</td>
+          <td>{{product.fat}}</td>
+          <td>{{product.carbohydrates}}</td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
 </div>

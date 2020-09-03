@@ -1,48 +1,49 @@
-
 <div class="container">
   <div class="row margined">
     <div class="col-md-8">
       <mat-form-field class="w-100">
-        <input matInput placeholder="Wyszukaj" id="filterValue_placeholder">
+        <input matInput placeholder="Wyszukaj" id="filterValue_placeholder" [(ngModel)]="searchFilter">
       </mat-form-field>
     </div>
     <div class="col-md-2 mt-2">
-      <button class="btn btn-dark"> Wyszukaj</button>
+      <button class="btn btn-dark" (click)="chooseMode(0, paginator.pageSize)"> Wyszukaj</button>
     </div>
     <div class="col-md-2 mt-2">
       <button class="btn btn-dark" *ngIf="loginService.isLogged()" (click)="addProduct()">Dodaj</button>
     </div>
   </div>
-<table class="table margined">
-  <thead>
-  <tr>
-    <th scope="col">Nazwa</th>
-    <th scope="col">Producent</th>
-    <th scope="col">Kalorie(kcal/100g)</th>
-    <th scope="col">Białko(g)</th>
-    <th scope="col">Tłuszcze(g)</th>
-    <th scope="col">Węglowodany(g)</th>
-  </tr>
-  </thead>
-  <tbody>
-  <ng-container *ngFor=" let product of products">
-    <tr>
-      <td>{{product.name}}</td>
-      <td>{{product.brand}}</td>
-      <td>{{product.calories}}</td>
-      <td>{{product.whey}}</td>
-      <td>{{product.fat}}</td>
-      <td>{{product.carbohydrates}}</td>
-    </tr>
-  </ng-container>
-  </tbody>
-</table>
+  <div class="table-responsive margined">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Nazwa</th>
+        <th scope="col">Producent</th>
+        <th scope="col">Kalorie(kcal/100g)</th>
+        <th scope="col">Białko(g)</th>
+        <th scope="col">Tłuszcze(g)</th>
+        <th scope="col">Węglowodany(g)</th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor=" let product of products">
+        <tr>
+          <td>{{product.name}}</td>
+          <td>{{product.brand}}</td>
+          <td>{{product.calories}}</td>
+          <td>{{product.whey}}</td>
+          <td>{{product.fat}}</td>
+          <td>{{product.carbohydrates}}</td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
   <mat-paginator
-                [length]="total"
-                  [pageSize]="size"
-                 [pageIndex]="page"
-                 (page)="loadData(paginator.pageIndex, paginator.pageSize)"
-                 [pageSizeOptions]="[5, 10, 25, 100]">
+    [length]="total"
+    [pageSize]="size"
+    [pageIndex]="page"
+    (page)="chooseMode(paginator.pageIndex, paginator.pageSize)"
+    [pageSizeOptions]="[5, 10, 25, 100]">
   </mat-paginator>
 </div>
 

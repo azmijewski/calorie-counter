@@ -14,13 +14,17 @@ import {UserServiceWeb} from '../services/web/user.service-web';
 export class MyDataPageComponent implements OnInit {
 
   user: User;
+  isDataLoaded = false;
 
   constructor(private dialog: MatDialog, private userWebService: UserServiceWeb) {
   }
 
   ngOnInit(): void {
+    this.isDataLoaded = false;
     this.userWebService.loadUserData().subscribe(data => {
       this.user = data;
+    }, error => {}, () => {
+      this.isDataLoaded = true;
     });
   }
 
@@ -31,7 +35,7 @@ export class MyDataPageComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(acoount => {
       if (acoount) {
-        this.userWebService.modifyUserData(acoount).subscribe();
+        this.userWebService.modifyUserData(acoount).subscribe(response => this.ngOnInit());
       }
     });
   }
@@ -53,7 +57,9 @@ export class MyDataPageComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(changePassword => {
       if (changePassword) {
-        this.userWebService.changeUserPassword(changePassword);
+        this.userWebService.changeUserPassword(changePassword).subscribe(response => {
+          sessionStorage.setItem('token', btoa(this.user.username.concat(':').concat(changePassword)));
+        });
       }
     });
   }

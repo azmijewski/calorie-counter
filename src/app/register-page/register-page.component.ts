@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../model/user';
 import {LoginService} from '../services/login.service';
 import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-register-page',
@@ -15,7 +17,10 @@ export class RegisterPageComponent implements OnInit {
   errorMessage: string;
   isRegisterSuccess = false;
 
-  constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder,
+              private loginService: LoginService,
+              private router: Router,
+              @Inject(LOCALE_ID) private locale) { }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
@@ -38,7 +43,7 @@ export class RegisterPageComponent implements OnInit {
         weight: 0,
         height: 0,
         calorie: 0,
-        birthDate: this.registerForm.value.birthDate,
+        birthDate: formatDate(this.registerForm.value.birthDate, 'yyyy-MM-dd', this.locale) ,
         password: this.registerForm.value.password
       };
       this.loginService.register(user).subscribe(response => {this.isRegisterSuccess = true;}, error => {

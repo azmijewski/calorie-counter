@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Observable} from 'rxjs';
 import {LoginService} from './login.service';
+import {HttpParams} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,12 @@ export class AuthGuardService implements CanActivate{
     if (this.loginService.isLogged()) {
       return true;
     }
-    console.log('Not logged');
-    this.router.navigate(['login']);
+    const redirectedRoute = route.routeConfig.path;
+    this.router.navigate(['login'], {
+      queryParams: {
+        redirect: redirectedRoute
+      }
+    });
     return false;
   }
 }

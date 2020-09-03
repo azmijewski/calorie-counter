@@ -22,6 +22,7 @@ export class ProductsPageComponent implements OnInit, AfterViewInit {
   hasPrevious = false;
   total = 0;
   searchFilter = '';
+  isSearchActivated = false;
 
   constructor(private dialog: MatDialog, public loginService: LoginService, private productWebService: ProductWebService) {
   }
@@ -43,10 +44,30 @@ export class ProductsPageComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(product => {
       if (product) {
         this.productWebService.addProduct(product).subscribe(response => {
-          this.loadData(0, 10);
+          this.loadData(this.paginator.pageIndex, this.paginator.pageSize);
         });
       }
     });
+  }
+  chooseMode(page: number, size: number): void{
+    if (this.searchFilter) {
+      if (!this.isSearchActivated){
+        this.page = 0;
+        this.paginator.pageIndex = 0;
+      }
+      this.isSearchActivated = true;
+    } else {
+      if (this.isSearchActivated) {
+        this.page = 0;
+        this.paginator.pageIndex = 0;
+      }
+      this.isSearchActivated = false;
+    }
+    if (this.isSearchActivated){
+      this.search(page, size);
+    } else {
+      this.loadData(page, size);
+    }
   }
 
   loadData(page: number, size: number): void {
@@ -58,9 +79,12 @@ export class ProductsPageComponent implements OnInit, AfterViewInit {
     });
   }
 
-  search(): void {
-
+  search(page: number, size: number): void {
+    this.productWebService.searchProducts(page, size, this.searchFilter).subscribe(data => {
+      this.products = data.content;
+      this.hasNext = !data.last;
+      this.hasPrevious = !data.first;
+      this.total = data.totalElements;
+    });
   }
-
-
 }

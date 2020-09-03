@@ -1,6 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormControl} from '@angular/forms';
+import {UserProductWebService} from '../services/web/user-product-web.service';
+import {UserProduct} from '../model/user-product';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {AddCalorieProductDialogComponent} from '../dialogs/add-calorie-product-dialog/add-calorie-product-dialog.component';
+import {NewUserProduct} from '../model/new-user-product';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-my-calories-page',
@@ -11,15 +17,51 @@ export class MyCaloriesPageComponent implements OnInit {
 
 
   date = new Date();
+  userProducts = new Array<UserProduct>();
+  totalCalories = 0;
+  calorieGoal = 0;
+  difference = 0;
 
-  constructor() { }
+  constructor(private userProductService: UserProductWebService,
+              private dialog: MatDialog,
+              @Inject(LOCALE_ID) private locale) {
+  }
 
   ngOnInit(): void {
+    this.loadUsersProducts(this.date);
   }
 
 
   click(): void {
     console.log('Wybrana data: ' + this.date);
+    this.loadUsersProducts(this.date);
+  }
+
+  loadUsersProducts(date: Date): void {
+    this.userProductService.loadUserProducts(date).subscribe(data => {
+      this.userProducts = data.products;
+      this.totalCalories = data.totalCalories;
+      this.calorieGoal = data.calorieGoal;
+      this.difference = data.difference;
+    });
+  }
+
+  addProduct(): void {
+    const dialog = this.dialog.open(AddCalorieProductDialogComponent, {
+      width: '700px'
+    });
+    dialog.afterClosed().subscribe(data => {
+      if (data) {
+        const newUserProduct: NewUserProduct = {
+          productId: data.productId,
+          weight: data.weight,
+          date: formatDate(this.date, 'yyyy-MM-dd', this.locale)
+        };
+        this.userProductService.addProduct(newUserProduct).subscribe(response => {
+          this.loadUsersProducts(this.date);
+        });
+      }
+    });
   }
 
 }

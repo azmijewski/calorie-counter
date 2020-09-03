@@ -28,7 +28,7 @@ export class ChangePasswordDialogComponent implements OnInit {
     return pass === confirmPass ? null : { notSame: true };
   }
 
-  changePassword() {
+  changePassword(): void {
     if (this.form.valid) {
       this.dialogRef.close();
     }

@@ -22,15 +22,6 @@ export class UserServiceWeb {
   deleteAccount(deleteAccount: DeleteAccount): Observable<HttpResponseBase> {
     return this.http.post(environment.appUrl + 'current-user', deleteAccount, {observe: 'response'});
   }
-
-  registerUser(user: User): Observable<HttpResponseBase> {
-    return this.http.post(environment.appUrl + 'registration', user, {observe: 'response'});
-  }
-
-  confirmRegistration(token: string): Observable<HttpResponseBase> {
-    return this.http.put(environment.appUrl + 'registration/' + token, null, {observe: 'response'});
-  }
-
   modifyUserData(user: User): Observable<HttpResponseBase> {
     return this.http.put(environment.appUrl + 'current-user', user, {observe: 'response'});
   }

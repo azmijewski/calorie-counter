@@ -1,54 +1,52 @@
 <div class="modal-body p-5">
   <div class="container-fluid center-block">
-    <h2 mat-dialog-title>Dodaj użytkownika</h2>
-<!--    <span class="material-icons" style="position: absolute; top: 5px; right: 5px; cursor: pointer"-->
-<!--          (click)="dialogRef.close()">close</span>-->
+    <div class="mat-dialog-title">Dodaj Produkt</div>
     <mat-dialog-content>
       <div class="container">
-        <form [formGroup]="form">
-          <div class="row">
-            <div class="col-md-5"><p class="label">Nazwa produktu: <span *ngIf="form.get('name').invalid"
-                                                                         style="color: red; font-weight: bold">*</span>
-            </p></div>
-            <div class="col-md-7"><input id="add_name" formControlName="name"></div>
-            <div class="col-md-5"><p class="label">Firma: <span *ngIf="form.get('brand').invalid"
-                                                                style="color: red; font-weight: bold">*</span></p></div>
-            <div class="col-md-7"><input id="add_brand" formControlName="brand"></div>
-            <div class="col-md-5"><p class="label">Calorie: <span *ngIf="form.get('calories').invalid"
-                                                                  style="color: red; font-weight: bold">*</span></p>
-            </div>
-            <div class="col-md-7"><input id="add_calorie" formControlName="calories"></div>
-            <div class="col-md-5"><p class="label">Białko: <span *ngIf="form.get('whey').invalid"
-                                                                 style="color: red; font-weight: bold">*</span></p>
-            </div>
-            <div class="col-md-7"><input id="add_whey" formControlName="whey"></div>
-            <div class="col-md-5"><p class="label">Tłuszcz: <span *ngIf="form.get('fat').invalid"
-                                                                  style="color: red; font-weight: bold">*</span></p>
-            </div>
-            <div class="col-md-7"><input id="add_fat" formControlName="fat"></div>
-            <div class="col-md-5"><p class="label">Węglowodany: <span *ngIf="form.get('carbs').invalid"
-                                                                      style="color: red; font-weight: bold">*</span></p>
-            </div>
-            <div class="col-md-7"><input id="add_carbs" formControlName="carbs"></div>
+        <div class="col-md-8">
+          <mat-form-field class="w-100">
+            <input matInput placeholder="Wyszukaj" id="filterValue_placeholder" [(ngModel)]="searchFilter">
+          </mat-form-field>
+        </div>
+        <div class="col-md-2 mt-2">
+          <button class="btn btn-dark" (click)="chooseMode()"> Wyszukaj</button>
+        </div>
+        <div class="table-responsive margined">
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col">Nazwa</th>
+              <th scope="col">Waga</th>
+              <th scope="col">Dodaj</th>
+            </tr>
+            </thead>
+            <tbody>
+            <ng-container *ngFor=" let product of products">
+              <tr>
+                <td>{{getName(product.product)}}</td>
+                <td>
+                  <input type="text" [value]="100" style="outline: none" [(ngModel)]="product.weight">
+                </td>
+                <td>
+                  <button class="btn btn-dark" (click)="addProduct(product)">Dodaj</button>
+                </td>
+              </tr>
+            </ng-container>
+            </tbody>
+          </table>
+        </div>
+        <div class="row" style="margin-top: 30px; margin-bottom: 30px">
+          <div class="col-md-1 col-sm-3">
+            <a id="previous_page_button" (click)="previousPage()" [hidden]="first" style="cursor: pointer">
+              <span class="material-icons">keyboard_arrow_left</span>
+            </a>
           </div>
-          <div class="row" style="margin-bottom: 10px">
-            <div class="col-md-12" *ngIf="!form.valid">
-              <span class="text-error" style="color: red">
-                <span class="material-icons" style="position: relative; top: 5px">error</span>
-                <span
-                  style="position: relative; left: 5px; bottom: 2px">Wszystkie pola muszą mieć poprawne wartości</span>
-              </span>
-            </div>
+          <div class="col-md-1 col-sm-3">
+            <a id="next_page_button" (click)="nextPage()" [hidden]="last" style="cursor: pointer">
+              <span class="material-icons">keyboard_arrow_right</span>
+            </a>
           </div>
-          <div class="row">
-            <div class="col-md-6"></div>
-            <div class="col-md-6">
-              <button id="user_add" type="button" class="btn btn-dark" (click)="addProduct()"
-                      style="margin-bottom: 5px">Dodaj
-              </button>
-            </div>
-          </div>
-        </form>
+        </div>
       </div>
     </mat-dialog-content>
   </div>

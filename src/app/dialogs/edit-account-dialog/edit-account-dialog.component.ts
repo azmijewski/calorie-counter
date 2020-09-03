@@ -21,11 +21,11 @@ export class EditAccountDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group( {
+    this.form = this.formBuilder.group({
       firstname: [this.data.firstName, Validators.required],
       lastname: [this.data.lastName, Validators.required],
       calories: [this.data.calorie, Validators.required],
-      email: [this.data.email, Validators.required, Validators.email],
+      email: [this.data.email, Validators.email],
       weight: [this.data.weight, Validators.required],
       height: [this.data.height, Validators.required]
     });
@@ -35,14 +35,15 @@ export class EditAccountDialogComponent implements OnInit {
     if (this.form.valid) {
       const userDto: User = {
         id: null,
-      firstName: this.form.value.firstname,
-      lastName: this.form.value.lastname,
-      email: this.form.value.email,
-      weight: this.form.value.weight,
-      height: this.form.value.height,
-      calorie: this.form.value.calories,
-      birthDate: this.data.birthDate,
-      password: null,
+        username: this.data.username,
+        firstName: this.form.value.firstname,
+        lastName: this.form.value.lastname,
+        email: this.form.value.email,
+        weight: this.form.value.weight,
+        height: this.form.value.height,
+        calorie: this.form.value.calories,
+        birthDate: this.data.birthDate,
+        password: null,
       };
       this.dialogRef.close(userDto);
     }
