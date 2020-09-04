@@ -1,12 +1,11 @@
 <div class="container margined-up">
-  <div class="row justify-content-center">
-    <h1>Witamy na stronie Licznik Kalorii</h1>
-  </div>
-  <article>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu volutpat nibh, id accumsan purus. Duis at arcu congue, condimentum mauris vitae, commodo justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas in est nisi. Suspendisse in sem nisi. Sed sed urna eu urna pulvinar sollicitudin ut non magna. Donec semper viverra ex id eleifend. Sed ac molestie orci, placerat consectetur mi.
-    Mauris ultricies efficitur felis non vestibulum. Aenean et turpis congue, commodo orci sed, mattis eros. Nam hendrerit, felis in aliquet rutrum, neque elit fermentum enim, tristique porta quam mauris ut elit. Nunc scelerisque vulputate ipsum. Curabitur porttitor augue ut tincidunt pulvinar. Vivamus malesuada bibendum ipsum a laoreet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent a auctor arcu.
-    Vestibulum ac faucibus arcu, ut sagittis augue. Praesent mauris urna, rhoncus vel tempus a, malesuada rhoncus tellus. Cras hendrerit auctor augue quis dictum. Proin ex neque, condimentum id odio et, porttitor aliquam magna. Etiam nisi tellus, pulvinar vel augue eu, tempus ullamcorper ipsum. Vestibulum pharetra purus nec accumsan dignissim. Morbi ut urna elit. Ut convallis est a mauris feugiat, a aliquam diam volutpat. Pellentesque malesuada libero et massa tempus consectetur. Proin a mattis sem. Ut volutpat magna ut ligula dapibus, non placerat elit condimentum. Nulla gravida justo lorem, vel rutrum mi accumsan vel. Proin eu tempor ex. Nullam molestie velit facilisis condimentum pharetra.
-    Vivamus pretium eros urna, non volutpat felis eleifend eu. Integer a lectus a ipsum condimentum eleifend ac quis dui. Cras finibus nibh sed tellus sollicitudin, quis elementum diam posuere. In eu ex volutpat massa fringilla fermentum sed eu sapien. Nulla iaculis sed lorem id ornare. In dignissim odio ac dolor tincidunt vulputate. Phasellus a pulvinar erat, ut blandit eros. Morbi at interdum massa.
-    Maecenas id magna egestas orci luctus maximus ut et elit. Aliquam ac massa mi. Fusce convallis purus non leo sollicitudin bibendum. Suspendisse congue rutrum mi, sit amet malesuada lacus viverra ac. Aenean sit amet nisl eu odio tempor egestas ac vel dui. Praesent rutrum malesuada ipsum, non sollicitudin ligula viverra a. Pellentesque viverra pellentesque lectus vel convallis. Pellentesque sollicitudin tincidunt massa, scelerisque tincidunt ligula. Proin sed nisl nibh.
-  </article>
+    <div class="row justify-content-center">
+      <h1 id="title"><strong>{{article.title}}</strong></h1>
+    </div>
+    <div class="row justify-content-center">
+      <img [src]="appUrl + article.photoId" alt="" width="400" height="200">
+    </div>
+    <article class="row justify-content-center" id="content">
+      {{article.content}}
+    </article>
 </div>
