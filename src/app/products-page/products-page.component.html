@@ -29,10 +29,10 @@
         <tr>
           <td>{{product.name}}</td>
           <td>{{product.brand}}</td>
-          <td>{{product.calories}}</td>
-          <td>{{product.whey}}</td>
-          <td>{{product.fat}}</td>
-          <td>{{product.carbohydrates}}</td>
+          <td>{{product.calories | number : '1.2-2'}}</td>
+          <td>{{product.whey | number : '1.2-2'}}</td>
+          <td>{{product.fat | number : '1.2-2'}}</td>
+          <td>{{product.carbohydrates | number : '1.2-2'}}</td>
         </tr>
       </ng-container>
       </tbody>

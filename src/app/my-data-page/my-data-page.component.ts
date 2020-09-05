@@ -5,6 +5,8 @@ import {DeleteAccountDialogComponent} from '../dialogs/delete-account-dialog/del
 import {ChangePasswordDialogComponent} from '../dialogs/change-password-dialog/change-password-dialog.component';
 import {User} from '../model/user';
 import {UserServiceWeb} from '../services/web/user.service-web';
+import {ResultDialogComponent} from '../dialogs/result-dialog/result-dialog.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-my-data-page',
@@ -16,7 +18,7 @@ export class MyDataPageComponent implements OnInit {
   user: User;
   isDataLoaded = false;
 
-  constructor(private dialog: MatDialog, private userWebService: UserServiceWeb) {
+  constructor(private dialog: MatDialog, private userWebService: UserServiceWeb, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -46,7 +48,15 @@ export class MyDataPageComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(deleteAccount => {
       if (deleteAccount) {
-        this.userWebService.deleteAccount(deleteAccount).subscribe();
+        this.userWebService.deleteAccount(deleteAccount).subscribe(response => {
+          sessionStorage.removeItem('token');
+          this.router.navigate(['']);
+        }, error => {
+          const resultDialog = this.dialog.open(ResultDialogComponent, {
+            width: '700px',
+            data: 'Nieprawidłowe hasło'
+          });
+        });
       }
     });
   }
@@ -58,7 +68,12 @@ export class MyDataPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe(changePassword => {
       if (changePassword) {
         this.userWebService.changeUserPassword(changePassword).subscribe(response => {
-          sessionStorage.setItem('token', btoa(this.user.username.concat(':').concat(changePassword)));
+          sessionStorage.setItem('token', btoa(this.user.username.concat(':').concat(changePassword.newPassword)));
+        }, error => {
+          const resultDialog = this.dialog.open(ResultDialogComponent, {
+            width: '700px',
+            data: 'Nieprawidłowe hasło'
+          });
         });
       }
     });

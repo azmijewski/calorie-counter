@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {ChangePassword} from '../../model/change-password';
 
 @Component({
   selector: 'app-change-password-dialog',
@@ -30,7 +31,11 @@ export class ChangePasswordDialogComponent implements OnInit {
 
   changePassword(): void {
     if (this.form.valid) {
-      this.dialogRef.close();
+      const changePass: ChangePassword = {
+        newPassword: this.form.value.newPassword,
+        oldPassword: this.form.value.oldPassword
+      };
+      this.dialogRef.close(changePass);
     }
   }
 }

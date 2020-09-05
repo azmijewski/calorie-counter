@@ -10,7 +10,7 @@
             <div class="col-md-5"><p class="label">Wpisz hasło:
               <span *ngIf="form.get('password').invalid" style="color: red; font-weight: bold">*</span>
             </p></div>
-            <div class="col-md-7"><input id="enter_password" formControlName="password"></div>
+            <div class="col-md-7"><input id="enter_password" type="password" formControlName="password"></div>
           </div>
           <div class="row" style="margin-bottom: 10px">
             <div class="col-md-12" *ngIf="!form.valid">
