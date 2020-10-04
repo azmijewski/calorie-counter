@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row margined">
+    <div class="col-md-2 mt-2">
+      <button class="btn btn-dark" (click)="addMeals()">Dodaj</button>
+    </div>
+  </div>
+  <div class="table-responsive-lg margined">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Nazwa</th>
+        <th scope="col">Kalorie</th>
+        <th scope="col">Białko(g)</th>
+        <th scope="col">Tłuszcze(g)</th>
+        <th scope="col">Węglowodany(g)</th>
+        <th scope="col">Akcja</th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor=" let meal of meals">
+        <tr>
+          <td>{{meal.name}}</td>
+          <td>{{meal.calories | number : '1.2-2'}}</td>
+          <td>{{meal.whey | number : '1.2-2'}}</td>
+          <td>{{meal.fat | number : '1.2-2'}}</td>
+          <td>{{meal.carbohydrates | number : '1.2-2'}}</td>
+          <td>
+            <div class="row">
+              <button class="btn btn-dark" style="margin-right: 5px; margin-bottom: 5px" [disabled]="meal.default" (click)="delete(meal)">Usuń</button>
+              <button class="btn btn-dark" style="margin-right: 5px; margin-bottom: 5px" [disabled]="meal.default" (click)="edit(meal)">Edytuj</button>
+              <button class="btn btn-dark" style="margin-right: 5px; margin-bottom: 5px" (click)="show(meal)">Pokaż</button>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
+  <mat-paginator
+    [length]="total"
+    [pageSize]="size"
+    [pageIndex]="page"
+    (page)="loadData(paginator.pageIndex, paginator.pageSize)"
+    [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+</div>

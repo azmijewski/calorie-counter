@@ -10,6 +10,8 @@ import {formatDate} from '@angular/common';
 import {DeleteUserProduct} from '../model/delete-user-product';
 import {ModifyUserProductComponent} from '../dialogs/modify-user-product/modify-user-product.component';
 import {ModifyUserProduct} from '../model/modify-user-product';
+import {AddMealToUserProductsDialogComponent} from '../dialogs/add-meal-to-user-products-dialog/add-meal-to-user-products-dialog.component';
+import {NewUserMeal} from '../model/new-user-meal';
 
 @Component({
   selector: 'app-my-calories-page',
@@ -76,6 +78,7 @@ export class MyCaloriesPageComponent implements OnInit {
       this.loadUsersProducts(this.date);
     });
   }
+
   edit(product: UserProduct): void {
     const dialog = this.dialog.open(ModifyUserProductComponent, {
       width: '700px',
@@ -85,8 +88,8 @@ export class MyCaloriesPageComponent implements OnInit {
       if (data) {
         const modifyUserProduct: ModifyUserProduct = {
           productId: product.productId,
-        date: formatDate(this.date, 'yyyy-MM-dd', this.locale),
-        newWeight: data
+          date: formatDate(this.date, 'yyyy-MM-dd', this.locale),
+          newWeight: data
         };
         this.userProductService.modifyUserProduct(modifyUserProduct).subscribe(response => {
           this.loadUsersProducts(this.date);
@@ -94,4 +97,39 @@ export class MyCaloriesPageComponent implements OnInit {
       }
     });
   }
+
+  addMeal(): void {
+    const dialog = this.dialog.open(AddMealToUserProductsDialogComponent, {
+      width: '700px',
+    });
+    dialog.afterClosed().subscribe(data => {
+      if (data) {
+        const userMeal: NewUserMeal = {
+          mealId: data,
+          date: formatDate(this.date, 'yyyy-MM-dd', this.locale)
+        };
+        this.userProductService.addMeal(userMeal).subscribe(response => {
+          this.loadUsersProducts(this.date);
+        });
+      }
+    });
+  }
+
+  getPercentage(): number {
+    return Math.floor(this.totalCalories / this.calorieGoal * 100);
+  }
+
+  getType(): string {
+    console.log(this.getPercentage());
+    if (this.getPercentage() < 90) {
+      return 'success';
+    } else if (this.getPercentage() <= 100) {
+      return 'info';
+    } else if (this.getPercentage() < 105) {
+      return 'warning';
+    } else {
+      return 'danger';
+    }
+  }
+
 }

@@ -7,6 +7,7 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <button class="btn btn-dark margined" (click)="addProduct()">Dodaj produkt</button>
+    <button class="btn btn-dark margined" (click)="addMeal()">Dodaj Posiłek</button>
   </div>
   <div class="table-responsive-lg">
     <table class="table">
@@ -43,4 +44,5 @@
       </tbody>
     </table>
   </div>
+  <ngb-progressbar [type]="getType()" textType="dark" [value]="getPercentage()">{{totalCalories + '/' + calorieGoal}}</ngb-progressbar>
 </div>

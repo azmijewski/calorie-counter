@@ -10,11 +10,13 @@ import {ArticlesPageComponent} from './articles-page/articles-page.component';
 import {MyDataPageComponent} from './my-data-page/my-data-page.component';
 import {AccountConfirmationPageComponent} from './account-confirmation-page/account-confirmation-page.component';
 import {ArticleListPageComponent} from './article-list-page/article-list-page.component';
+import {MealsListPageComponent} from './meals-list-page/meals-list-page.component';
+import {MealPageComponent} from './meal-page/meal-page.component';
 
 const routes: Routes = [{
-    path: '',
-    component: ContentPageComponent
-  },
+  path: '',
+  component: ContentPageComponent
+},
   {
     path: 'calories',
     component: MyCaloriesPageComponent,
@@ -48,11 +50,23 @@ const routes: Routes = [{
   {
     path: 'confirmation/:token',
     component: AccountConfirmationPageComponent
+  }, {
+    path: 'meals',
+    component: MealsListPageComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'meals/:id',
+    component: MealPageComponent,
+    canActivate: [AuthGuardService]
   }
 ];
+
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
+  }
+)
+export class AppRoutingModule {
 }
-) export class AppRoutingModule {}
 

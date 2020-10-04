@@ -1,0 +1,63 @@
+<ng-container *ngIf="isDataLoaded; else loadSpinner">
+  <div class="container">
+    <div class="row justify-content-start margined">
+      <h1>{{meal.name}}</h1>
+      <button class="btn btn-dark margined" (click)="addProduct()">Dodaj produkt</button>
+    </div>
+    <div class="table-responsive-lg">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Nazwa</th>
+          <th scope="col">Producent</th>
+          <th scope="col">Ilość(g)</th>
+          <th scope="col">Kalorie(kcal)</th>
+          <th scope="col">Białko(g)</th>
+          <th scope="col">Tłuszcze(g)</th>
+          <th scope="col">Węglowodany(g)</th>
+          <th scope="col">Akcja</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor=" let product of products">
+          <tr>
+            <td>{{product.name}}</td>
+            <td>{{product.brand}}</td>
+            <td>{{product.weight | number : '1.2-2'}}</td>
+            <td>{{product.calories | number : '1.2-2'}}</td>
+            <td>{{product.whey | number : '1.2-2'}}</td>
+            <td>{{product.fat | number : '1.2-2'}}</td>
+            <td>{{product.carbohydrates | number : '1.2-2'}}</td>
+            <td>
+              <div class="row">
+                <button class="btn btn-dark" style="margin-right: 5px; margin-bottom: 5px" (click)="delete(product)">
+                  Usuń
+                </button>
+                <button class="btn btn-dark" style="margin-right: 5px; margin-bottom: 5px" (click)="edit(product)">
+                  Edytuj
+                </button>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+        <tr>
+          <td>Podsumowanie</td>
+          <td></td>
+          <td></td>
+          <td>{{meal.calories | number : '1.2-2'}}</td>
+          <td>{{meal.whey | number : '1.2-2'}}</td>
+          <td>{{meal.fat | number : '1.2-2'}}</td>
+          <td>{{meal.carbohydrates | number : '1.2-2'}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-container>
+<ng-template #loadSpinner>
+  <div class="d-flex justify-content-center">
+    <div class="spinner-grow  vertical-center" style="width: 5rem; height: 5rem;" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</ng-template>

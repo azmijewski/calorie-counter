@@ -7,6 +7,7 @@ import {NewUserProduct} from '../../model/new-user-product';
 import {DatePipe, formatDate} from '@angular/common';
 import {ModifyUserProduct} from '../../model/modify-user-product';
 import {DeleteUserProduct} from '../../model/delete-user-product';
+import {NewUserMeal} from '../../model/new-user-meal';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,9 @@ export class UserProductWebService {
   }
   deleteUserProduct(userProduct: DeleteUserProduct): Observable<HttpResponseBase> {
     return this.http.post(environment.appUrl + 'calories/remove', userProduct, {observe: 'response'});
+  }
+  addMeal(userMeal: NewUserMeal): Observable<HttpResponseBase> {
+    return this.http.post(environment.appUrl + 'calories/meals', userMeal, {observe: 'response'});
   }
 
 }

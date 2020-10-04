@@ -1,6 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {catchError} from 'rxjs/operators';
+import {ResultDialogComponent} from '../dialogs/result-dialog/result-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +11,7 @@ import {Observable} from 'rxjs';
 export class AuthInterceptor implements HttpInterceptor {
 
 
-  constructor() {
+  constructor(private dialog: MatDialog) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -22,5 +25,4 @@ export class AuthInterceptor implements HttpInterceptor {
     }
     return next.handle(req);
   }
-
 }

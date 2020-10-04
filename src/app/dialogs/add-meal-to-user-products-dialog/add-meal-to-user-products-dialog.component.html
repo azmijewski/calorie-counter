@@ -1,0 +1,43 @@
+<div class="modal-body p-5">
+  <div class="container-fluid center-block">
+    <div class="mat-dialog-title">Dodaj Produkt</div>
+    <mat-dialog-content>
+      <div class="container">
+        <div class="table-responsive margined">
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col">Nazwa</th>
+              <th scope="col">Kalorie</th>
+              <th scope="col">Dodaj</th>
+            </tr>
+            </thead>
+            <tbody>
+            <ng-container *ngFor=" let meal of meals">
+              <tr>
+                <td>{{meal.name}}</td>
+                <td>{{meal.calories}}</td>
+                <td>
+                  <button class="btn btn-dark" (click)="addMeal(meal)">Dodaj</button>
+                </td>
+              </tr>
+            </ng-container>
+            </tbody>
+          </table>
+        </div>
+        <div class="row" style="margin-top: 30px; margin-bottom: 30px">
+          <div class="col-md-1 col-sm-3">
+            <a id="previous_page_button" (click)="previousPage()" [hidden]="first" style="cursor: pointer">
+              <span class="material-icons">keyboard_arrow_left</span>
+            </a>
+          </div>
+          <div class="col-md-1 col-sm-3">
+            <a id="next_page_button" (click)="nextPage()" [hidden]="last" style="cursor: pointer">
+              <span class="material-icons">keyboard_arrow_right</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-content>
+  </div>
+</div>

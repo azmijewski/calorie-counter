@@ -32,6 +32,12 @@ import {AccountConfirmationPageComponent} from './account-confirmation-page/acco
 import { ModifyUserProductComponent } from './dialogs/modify-user-product/modify-user-product.component';
 import { ArticleListPageComponent } from './article-list-page/article-list-page.component';
 import { ResultDialogComponent } from './dialogs/result-dialog/result-dialog.component';
+import { MealsListPageComponent } from './meals-list-page/meals-list-page.component';
+import { AddMealDialogComponent } from './dialogs/add-meal-dialog/add-meal-dialog.component';
+import { MealPageComponent } from './meal-page/meal-page.component';
+import { EditMealDialogComponent } from './dialogs/edit-meal-dialog/edit-meal-dialog.component';
+import { AddMealToUserProductsDialogComponent } from './dialogs/add-meal-to-user-products-dialog/add-meal-to-user-products-dialog.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 registerLocaleData(localePl);
 
 @NgModule({
@@ -53,7 +59,12 @@ registerLocaleData(localePl);
     AccountConfirmationPageComponent,
     ModifyUserProductComponent,
     ArticleListPageComponent,
-    ResultDialogComponent
+    ResultDialogComponent,
+    MealsListPageComponent,
+    AddMealDialogComponent,
+    MealPageComponent,
+    EditMealDialogComponent,
+    AddMealToUserProductsDialogComponent
   ],
   imports: [
     AppRoutingModule,
@@ -69,6 +80,7 @@ registerLocaleData(localePl);
     MatNativeDateModule,
     HttpClientModule,
     MatDialogModule,
+    NgbModule,
   ],
   entryComponents: [
     AddProductDialogComponent,
